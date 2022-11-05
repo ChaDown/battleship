@@ -18,9 +18,3 @@ test('Ships type, length and times hit work', () => {
 test('Is sunk function returns false', () => {
   expect(testShip.isSunk()).toBe(false);
 });
-
-testShip.hit();
-
-test('Hit adds 1 to to times hit', () => {
-  expect(testShip.timesHit).toBe(1);
-});
