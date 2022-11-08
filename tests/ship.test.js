@@ -1,10 +1,10 @@
-import { Ship } from '../src/index';
+import { Ship } from '../src/ship';
 
 const testShip = Ship('destroyer', 4, 0);
 
 // Test the ship factory function
 test('Ships type, length and times hit work', () => {
-  expect(testShip.length).toBe(4);
+  expect(testShip.shipLength).toBe(4);
 });
 
 test('Ships type, length and times hit work', () => {
@@ -17,4 +17,9 @@ test('Ships type, length and times hit work', () => {
 
 test('Is sunk function returns false', () => {
   expect(testShip.isSunk()).toBe(false);
+});
+
+test('hit function adds 1 to timesHit', () => {
+  testShip.hit();
+  expect(testShip.timesHit).toBe(1);
 });
