@@ -8,6 +8,7 @@ gameboard1.placeShip('destroyer', [
 ]);
 gameboard1.receiveAttack([1, 1]);
 gameboard1.receiveAttack([1, 2]);
+gameboard1.placeRandomShip('destroyer', 2);
 
 test('Board should have 100 squares', () => {
   expect(gameboard1.gameboardArr.length).toBe(100);
@@ -22,6 +23,8 @@ test('Last square should be [10,10]', () => {
     coords: [10, 10],
     hit: false,
     ship: false,
+    col: 10,
+    row: 10,
   });
 });
 
@@ -54,6 +57,11 @@ test('Receive attack sends hit function to hit ship', () => {
 });
 
 test('If all ships in ships array are sunk, then game is over.', () => {
-  console.log(gameboard1.shipsArr);
-  expect(gameboard1.checkGameOver()).toBe(true);
+  expect(gameboard1.checkGameOver()).toBe(false);
 });
+
+// test("Random place ships creates 5 ships" () => {
+//     expect()
+// })
+
+// test("random coords returns array of coords.")
