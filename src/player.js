@@ -1,11 +1,19 @@
-export const Player = function () {
-  function makeRandomMove(gameboard) {
-    const randomIndex = Math.trunc(Math.random() * gameboard.length);
+import { Gameboard } from './gameboard';
 
-    gameboard[randomIndex].hit = true;
+const Player = function () {
+  const gameboard = Gameboard();
+
+  function makeRandomMove() {
+    const randomIndex = Math.trunc(Math.random() * 100);
+
+    return randomIndex;
   }
 
   return {
     makeRandomMove,
+    gameboard,
   };
 };
+
+export const user = Player();
+export const AI = Player();

@@ -38,7 +38,7 @@ export const Gameboard = function () {
     });
   }
 
-  const shipsArr = [];
+  let shipsArr = [];
 
   function placeShip(type, coords) {
     const deployedShip = Ship(type, getShipLength(type), 0, coords);
@@ -46,38 +46,23 @@ export const Gameboard = function () {
     shipsArr.push(deployedShip);
 
     markCoords(coords, type);
-
-    return deployedShip;
   }
 
-  // function getRandomCoords(n) {
-  //   const coords1 = [
-  //     [Math.trunc(Math.random() * 10 + 1), Math.trunc(Math.random() * 10 + 1)],
-  //   ];
-  //   for (let i = 0; i < n; i++) {
-  //     const coords2 = [coords1[0][0] + 1];
-  //   }
-  // }
-
-  // function randomPlaceShips(shipType) {}
-
-  function receiveAttack(coord) {
-    const squareIndex = this.gameboardArr.findIndex(
-      (el) => JSON.stringify(el.coords) === JSON.stringify(coord)
-    );
+  function receiveAttack(index) {
     // Mark as hit
-    this.gameboardArr[squareIndex].hit = true;
+    gameboardArr[index].hit = true;
     // Check if a ship is there, if so send hit function to ship.
-    if (this.gameboardArr[squareIndex].ship) {
-      const hitShip = this.shipsArr.find(
-        (ship) => ship.type === this.gameboardArr[squareIndex].ship
+    if (gameboardArr[index].ship) {
+      const hitShip = shipsArr.find(
+        (ship) => ship.type === gameboardArr[index].ship
       );
       hitShip.hit();
+      return true;
     }
   }
 
   function checkGameOver() {
-    const notSunkArr = this.shipsArr.filter((el) => el.isSunk() === false);
+    const notSunkArr = shipsArr.filter((el) => el.isSunk() === false);
 
     if (notSunkArr.length > 0) return false;
     return true;
@@ -153,6 +138,16 @@ export const Gameboard = function () {
     placeRandomShip('cruiser', 3);
     placeRandomShip('battleship', 4);
     placeRandomShip('carrier', 5);
+
+    console.log(shipsArr);
+  }
+
+  function clearShipsAndHits() {
+    shipsArr = [];
+    gameboardArr.forEach((tile) => {
+      if (tile.ship) tile.ship = '';
+      tile.hit = false;
+    });
   }
 
   return {
@@ -162,9 +157,11 @@ export const Gameboard = function () {
     markCoords,
     shipsArr,
     checkGameOver,
-    placeRandomShip,
     placeAllRandomShips,
+    clearShipsAndHits,
   };
 };
 
 export const gameboard1 = Gameboard();
+// export const userGameboard = Gameboard();
+// export const AIGameboard = Gameboard();

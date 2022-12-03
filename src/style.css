@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+
+body {
+  font-family: 'Saira Stencil One', sans-serif;
+  font-size: 2rem;
+}
+
+.user-board,
+.AI-board {
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  grid-template-rows: repeat(10), auto;
+  border: solid 1.5px black;
+  gap: none;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  align-items: center;
+  margin-top: 10vh;
+}
+
+.tile {
+  border: 1px solid rgb(212, 232, 254);
+  min-width: 10px;
+  min-height: 10px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  font-size: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2vh;
+}
+
+.LHS,
+.RHS {
+  width: 40vw;
+}
+
+.tile.ship.friendly {
+  background-color: rgba(61, 122, 173, 0.63);
+}
+
+.header {
+  text-align: center;
+}
+
+.hidden {
+  background-color: white;
+}
+
+.btn-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.start-btn {
+  margin: 30px;
+  padding: 5px;
+  width: 20%;
+  background-color: rgb(212, 232, 254);
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.hit::before {
+  content: 'x';
+}
+
+.ship.hit {
+  border-color: red;
+}
