@@ -1,4 +1,4 @@
-import { gameLoop } from './index';
+import gameLoop from './index';
 
 function createGameboardMarkup(gameboard, AI = false, friendly = false) {
   let html = '';
@@ -26,7 +26,9 @@ export function renderBoards(gameboard1, gameboard2) {
   AIBoard.innerHTML = createGameboardMarkup(gameboard2.gameboardArr, true);
 
   const enemyTilesArr = document.querySelectorAll('.enemy');
-  enemyTilesArr.forEach((tile) =>
-    tile.addEventListener('click', (e) => gameLoop(e))
-  );
+  setTimeout(() => {
+    enemyTilesArr.forEach((tile) =>
+      tile.addEventListener('click', (e) => gameLoop(e))
+    );
+  }, 1050);
 }
