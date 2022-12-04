@@ -38,7 +38,7 @@ export const Gameboard = function () {
     });
   }
 
-  let shipsArr = [];
+  const shipsArr = [];
 
   function placeShip(type, coords) {
     const deployedShip = Ship(type, getShipLength(type), 0, coords);
@@ -57,7 +57,6 @@ export const Gameboard = function () {
         (ship) => ship.type === gameboardArr[index].ship
       );
       hitShip.hit();
-      return true;
     }
   }
 
@@ -138,12 +137,10 @@ export const Gameboard = function () {
     placeRandomShip('cruiser', 3);
     placeRandomShip('battleship', 4);
     placeRandomShip('carrier', 5);
-
-    console.log(shipsArr);
   }
 
   function clearShipsAndHits() {
-    shipsArr = [];
+    shipsArr.length = 0;
     gameboardArr.forEach((tile) => {
       if (tile.ship) tile.ship = '';
       tile.hit = false;
@@ -163,5 +160,3 @@ export const Gameboard = function () {
 };
 
 export const gameboard1 = Gameboard();
-// export const userGameboard = Gameboard();
-// export const AIGameboard = Gameboard();

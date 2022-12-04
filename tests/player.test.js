@@ -1,12 +1,11 @@
-import { Gameboard } from '../src/gameboard';
 import { Player } from '../src/player';
 
-// const board1 = Gameboard();
-// const player = Player();
+const player = Player();
 
-// const move = player.getRandomMove(board1.getLegalMovesArr());
+player.makeRandomMove();
+player.makeRandomMove();
+player.makeRandomMove();
 
-// test('AI makes a random legal move, there are then 99 legal moves remaining', () => {
-//   expect(move).toBeGreaterThan(0);
-//   expect(move).toBeLessThan(100);
-// });
+test('There are now 3 moves in the usedMovesArr', () => {
+  expect(player.usedMovesArr.length).toBe(3);
+});

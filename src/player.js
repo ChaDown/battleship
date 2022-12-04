@@ -1,17 +1,23 @@
 import { Gameboard } from './gameboard';
 
-const Player = function () {
+export const Player = function () {
   const gameboard = Gameboard();
+
+  const usedMovesArr = [];
 
   function makeRandomMove() {
     const randomIndex = Math.trunc(Math.random() * 100);
-
-    return randomIndex;
+    if (!usedMovesArr.includes(randomIndex)) {
+      usedMovesArr.push(randomIndex);
+      return randomIndex;
+    }
+    makeRandomMove();
   }
 
   return {
     makeRandomMove,
     gameboard,
+    usedMovesArr,
   };
 };
 

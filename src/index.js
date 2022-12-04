@@ -1,7 +1,7 @@
 /* eslint-disable wrap-iife */
 
 import { user, AI } from './player';
-import { renderBoards } from './DOM';
+import renderBoards from './DOM';
 import css from './style.css';
 
 function init() {
@@ -21,6 +21,8 @@ function init() {
     renderBoards(user.gameboard, AI.gameboard);
 
     startBtn.textContent = 'Reset Game';
+
+    console.log(AI.gameboard, user.gameboard);
   }
 }
 
@@ -28,7 +30,6 @@ init();
 
 export default function gameLoop(e) {
   const tileIndex = e.target.dataset.index;
-  console.log(tileIndex);
 
   // Send hit to AI Gameboard
   AI.gameboard.receiveAttack(tileIndex);
@@ -41,7 +42,7 @@ export default function gameLoop(e) {
       const randomMoveIndex = user.makeRandomMove();
       user.gameboard.receiveAttack(randomMoveIndex);
       renderBoards(user.gameboard, AI.gameboard);
-      // If a shit isn't hit, break loop. If not recall this fn.
+      // If a ship isn't hit, break loop. If not recall this fn.
       if (!user.gameboard.gameboardArr[randomMoveIndex].ship) return;
       AIturn();
     }, 1000);

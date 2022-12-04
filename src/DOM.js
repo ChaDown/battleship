@@ -14,7 +14,7 @@ function createGameboardMarkup(gameboard, AI = false, friendly = false) {
   return html;
 }
 
-export function renderBoards(gameboard1, gameboard2) {
+export default function renderBoards(gameboard1, gameboard2) {
   const userBoard = document.querySelector('.user-board');
   const AIBoard = document.querySelector('.AI-board');
 
@@ -27,8 +27,10 @@ export function renderBoards(gameboard1, gameboard2) {
 
   const enemyTilesArr = document.querySelectorAll('.enemy');
   setTimeout(() => {
-    enemyTilesArr.forEach((tile) =>
-      tile.addEventListener('click', (e) => gameLoop(e))
-    );
+    enemyTilesArr.forEach((tile) => {
+      if (!tile.classList.contains('hit')) {
+        tile.addEventListener('click', (e) => gameLoop(e));
+      }
+    });
   }, 1050);
 }
