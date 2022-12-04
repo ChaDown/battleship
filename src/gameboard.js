@@ -50,6 +50,7 @@ export const Gameboard = function () {
 
   function receiveAttack(index) {
     // Mark as hit
+    console.log(index);
     gameboardArr[index].hit = true;
     // Check if a ship is there, if so send hit function to ship.
     if (gameboardArr[index].ship) {

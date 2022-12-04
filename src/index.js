@@ -21,8 +21,6 @@ function init() {
     renderBoards(user.gameboard, AI.gameboard);
 
     startBtn.textContent = 'Reset Game';
-
-    console.log(AI.gameboard, user.gameboard);
   }
 }
 
@@ -39,12 +37,12 @@ export default function gameLoop(e) {
   // Wait one sec, send random hit to user gameboard
   (function AIturn() {
     setTimeout(() => {
-      const randomMoveIndex = user.makeRandomMove();
-      user.gameboard.receiveAttack(randomMoveIndex);
+      const smartMoveIndex = user.makeSmartMove();
+      user.gameboard.receiveAttack(smartMoveIndex);
       renderBoards(user.gameboard, AI.gameboard);
       // If a ship isn't hit, break loop. If not recall this fn.
-      if (!user.gameboard.gameboardArr[randomMoveIndex].ship) return;
+      if (!user.gameboard.gameboardArr[smartMoveIndex].ship) return;
       AIturn();
-    }, 1000);
+    }, 800);
   })();
 }
