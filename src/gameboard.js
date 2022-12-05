@@ -50,7 +50,6 @@ export const Gameboard = function () {
 
   function receiveAttack(index) {
     // Mark as hit
-    console.log(index);
     gameboardArr[index].hit = true;
     // Check if a ship is there, if so send hit function to ship.
     if (gameboardArr[index].ship) {
@@ -120,8 +119,10 @@ export const Gameboard = function () {
     const firstTileIndex = gameboardArr.findIndex(
       (el) => JSON.stringify(el) === JSON.stringify(firstTile)
     );
-
+    // From first tile, randomly move in a direction and get other tiles for each ship.
     const shipTileIndexes = createDirectionIndexes(shipLength, firstTileIndex);
+    // To avoid errors, if no valid indexes are returned, try again!
+    if (!shipTileIndexes) return placeRandomShip(shipType, shipLength);
 
     const shipCoords = [];
 

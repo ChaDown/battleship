@@ -1,11 +1,18 @@
 import { Player } from '../src/player';
 
 const player = Player();
+player.gameboard.placeShip('destroyer', [
+  [1, 1],
+  [1, 2],
+]);
+player.gameboard.receiveAttack(1);
 
-player.makeRandomMove();
-player.makeRandomMove();
-player.makeRandomMove();
+test('Random Move creates a number between 0-99', () => {
+  expect(player.makeRandomMove()).toBeGreaterThanOrEqual(0);
+  expect(player.makeRandomMove()).toBeLessThan(100);
+});
 
-test('There are now 3 moves in the usedMovesArr', () => {
-  expect(player.usedMovesArr.length).toBe(3);
+test('Smart move selects a tile adjacent to hit tile', () => {
+  expect(player.makeSmartMove()).toBeGreaterThanOrEqual(2);
+  expect(player.makeSmartMove()).toBeLessThan(12);
 });

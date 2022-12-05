@@ -3,6 +3,10 @@
 body {
   font-family: 'Saira Stencil One', sans-serif;
   font-size: 2rem;
+  background-image: url('./assets/navy.jpg');
+  background-size: cover;
+  text-shadow: 0 0 1px rgb(255, 255, 255), 0 0 1px rgb(255, 255, 255),
+    0 0 1px rgb(255, 255, 255), 0 0 1px rgb(255, 255, 255);
 }
 
 .user-board,
@@ -10,7 +14,6 @@ body {
   display: grid;
   grid-template-columns: repeat(10, auto);
   grid-template-rows: repeat(10), auto;
-  border: solid 1.5px black;
   gap: none;
 }
 
@@ -20,18 +23,20 @@ body {
   height: 100%;
   align-items: center;
   margin-top: 10vh;
+  margin-bottom: 7vh;
 }
 
 .tile {
-  border: 1px solid rgb(212, 232, 254);
+  border: 0.5px solid rgba(40, 62, 84, 0.613);
   min-width: 10px;
   min-height: 10px;
   aspect-ratio: 1;
   overflow: hidden;
-  font-size: 40%;
+  font-size: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.708);
 }
 
 .title {
@@ -45,11 +50,12 @@ body {
 }
 
 .tile.ship.friendly {
-  background-color: rgba(61, 122, 173, 0.63);
+  background-color: rgb(61, 123, 173);
 }
 
 .header {
   text-align: center;
+  margin-top: 5vh;
 }
 
 .hidden {
@@ -62,19 +68,53 @@ body {
   justify-content: center;
 }
 
-.start-btn {
-  margin: 30px;
-  padding: 5px;
-  width: 20%;
+.start-btn,
+.new-game {
+  margin-top: 10px;
+  padding: 5px 20px;
+  width: fit-content;
   background-color: rgb(212, 232, 254);
   border: 1px solid black;
   border-radius: 5px;
 }
 
 .hit::before {
+  content: 'o';
+}
+
+.ship.hit::before {
   content: 'x';
 }
 
 .ship.hit {
   border-color: red;
+  background-color: crimson;
+}
+
+.game-over {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  border: black 2px solid;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-size: 1.2rem;
+}
+
+.overlay {
+  background-color: rgba(42, 42, 42, 0.841);
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
 }

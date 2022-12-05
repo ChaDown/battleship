@@ -7,19 +7,24 @@
     <title>Battleship</title>
   <script defer src="main.js"></script></head>
   <body>
-    <div class="header">Battleship</div>
-    <div class="main-container">
-      <div class="LHS">
-        <div class="title">Enemy Fleet</div>
-        <div class="AI-board"></div>
+    <div class="overlay-container">
+      <div class="header">Battleship</div>
+      <div class="main-container">
+        <div class="LHS">
+          <div class="title">Enemy Fleet</div>
+          <div class="AI-board"></div>
+        </div>
+        <div class="RHS">
+          <div class="title">Friendly Fleet</div>
+          <div class="user-board"></div>
+        </div>
       </div>
-      <div class="RHS">
-        <div class="title">Friendly Fleet</div>
-        <div class="user-board"></div>
+      <div class="btn-container">
+        <button class="start-btn">Start Game</button>
       </div>
     </div>
-    <div class="btn-container">
-      <button class="start-btn">Start Game</button>
+    <div class="game-over hidden">
+      <button class="new-game">New Battle</button>
     </div>
   </body>
 </html>
