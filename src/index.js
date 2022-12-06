@@ -32,12 +32,19 @@ function init() {
 init();
 
 export default function gameLoop(e) {
+  // Disable loop if gameover screen is open
+  if (user.gameboard.checkGameOver() || AI.gameboard.checkGameOver()) return;
+
   const tileIndex = e.target.dataset.index;
 
   // Send hit to AI Gameboard
   AI.gameboard.receiveAttack(tileIndex);
   renderBoards(user.gameboard, AI.gameboard, false);
-  if (AI.gameboard.checkGameOver()) toggleGameOver(false);
+  // Check for winner
+  if (AI.gameboard.checkGameOver()) {
+    toggleGameOver(false);
+    return;
+  }
   // If a ship is hit, end function.
   if (AI.gameboard.gameboardArr[tileIndex].ship) return;
 
@@ -47,7 +54,11 @@ export default function gameLoop(e) {
       const smartMoveIndex = user.makeSmartMove();
       user.gameboard.receiveAttack(smartMoveIndex);
       renderBoards(user.gameboard, AI.gameboard);
-      if (AI.gameboard.checkGameOver()) toggleGameOver(true);
+      // Check for winner
+      if (user.gameboard.checkGameOver()) {
+        toggleGameOver(true);
+        return;
+      }
       // If a ship isn't hit, break loop. If not recall this fn.
       if (!user.gameboard.gameboardArr[smartMoveIndex].ship) return;
       AIturn();
